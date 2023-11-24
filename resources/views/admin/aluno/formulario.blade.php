@@ -48,21 +48,20 @@
 <div class="row">
     <label class="col-sm-2 col-form-label">{{ __('Curso') }}</label>
     <div>
-        <select id="curso_id" name="curso_id" class="form-control @error('curso_id') is-invalid @enderror"
-            required>
+        <select id="cursos_id" name="cursos_id" class="form-control @error('cursos_id') is-invalid @enderror" required>
             <option value="">--- Selecione um Curso ---</option>
             @isset($cursos)
-                @foreach ($cursos as $curso)
-                    <option @if (isset($aluno) && $aluno->curso_id == $curso->id) selected @endif value="{{ $curso->id }}">
-                        {{ $curso->curso }}
-                    </option>
-                @endforeach
+            @foreach ($cursos as $curso)
+            <option @if (isset($aluno) && $aluno->cursos_id == $curso->id) selected @endif value="{{ $curso->id }}">
+                {{ $curso->curso }}
+            </option>
+            @endforeach
             @endisset
         </select>
-        @error('curso_id')
-            <span class="invalid-feedback" role="alert">
-                <i class="fi-circle-cross"></i><strong> {{ $message }}</strong>
-            </span>
+        @error('cursos_id')
+        <span class="invalid-feedback" role="alert">
+            <i class="fi-circle-cross"></i><strong> {{ $message }}</strong>
+        </span>
         @enderror
     </div>
 </div>

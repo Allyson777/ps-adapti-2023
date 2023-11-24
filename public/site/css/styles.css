@@ -1,0 +1,110 @@
+:root {
+    --text: #08030c;
+    --background: #f1e7f9;
+    --primary: #47751f;
+    --secondary: #e9dbf5;
+    --accent: #7dcb3a;
+    
+}
+
+.dark-theme {
+    
+    --text: #f8f3fc;
+    --background: #100618;
+    --primary: #b2e08a;
+    --secondary: #180a24;
+    --accent: #78c534;
+}
+
+body{
+    background: var(--background);
+    transition: .5s;
+}
+
+* {
+    
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+
+}
+
+.header {
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    
+}
+
+.header-logo {
+   
+    border-radius: 15px;
+}
+
+.header-actions {
+    display: flex;
+    gap: 2rem;
+    color: #f0f8ff;
+}
+
+.caixa-pesquisar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem;
+}
+
+.pesquisar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5rem;
+    background-color: var(--secondary);
+    border: 1px solid var(--secondary);
+    border-radius: 10px;
+
+}
+
+.input-pesquisa{
+    background: none;
+    padding: 1rem;
+    color: var(--text);
+    border: none;
+    outline: 0; 
+
+}
+
+.input-pesquisa::placeholder{
+    font-size:20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-mode{
+    transition: 1s;
+    border: none;
+    color: var(--text);
+    background: none;
+    font-size: 26px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+
+}
+
+
+.header-png{
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    width: 140px;
+    
+}
