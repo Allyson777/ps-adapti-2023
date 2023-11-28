@@ -20,6 +20,8 @@ use App\Http\Controllers\AlunoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('/contratar/{aluno}', [AlunoController::class, 'contratar'])->name('aluno.contratar');
+Route::get("search", [SiteController::class,"search"])->name("search");
 
 Route::middleware('locale')->group(function () {
 
@@ -43,7 +45,7 @@ Route::middleware('locale')->group(function () {
         Route::resource('user', UserController::class, ['except' => ['show']]);
         Route::resource('curso', CursoController::class, ['except' => ['show']]);
         Route::resource('aluno', AlunoController::class);
-
+        
 
         //Rotas para perfil do usuário
         Route::controller(ProfileController::class)->name('profile.')->group(function () {

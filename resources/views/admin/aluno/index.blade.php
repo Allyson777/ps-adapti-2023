@@ -156,11 +156,13 @@
             const url = 'aluno/' + id
             $.getJSON(url, (resposta) => {
                 console.log(resposta);
-                $("#detalhes-nome").val(resposta.nome);
+                $("#detalhes-nome").val(resposta.nome);                
                 $("#detalhes-contratado").val(resposta.contratado);
                 $("#detalhes-descricao").val(resposta.descricao);
                 $("#detalhes-curso").val(resposta.curso.curso);
                 $("#detalhes-imagem").attr('src', '' + resposta.imagem);
+                const contratadoStatus = resposta.contratado?'sim':'nao';
+                $("#contratado-status").text(contratadoStatus);
             });
         })
         /* js para abrir Modal de excluir de forma dinâmica */

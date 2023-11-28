@@ -14,6 +14,7 @@ class Aluno extends Model
     protected $fillable = [
         'nome',
         'descricao',
+        'contratado',
         'imagem',
         'cursos_id',
     ]; 

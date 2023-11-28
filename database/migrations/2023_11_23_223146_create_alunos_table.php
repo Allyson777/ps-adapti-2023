@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nome');
             $table->text('descricao');
             $table->string('imagem');
+            $table->boolean('contratado')->default(false);
             $table->foreignId('cursos_id')->constrained('cursos')->onDelete('cascade');
             $table->timestamps();
         });

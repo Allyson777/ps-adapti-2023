@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Aluno;
 use Illuminate\Foundation\Http\FormRequest;
 
 class AlunoRequest extends FormRequest
@@ -25,17 +26,21 @@ class AlunoRequest extends FormRequest
     {
         return [
         'nome'  => ['required','string'],
-        'descricao'=> ['max:3000'],
+        'descricao'=> ['max:150'],
         'imagem'=> ['image'],
-        'cursos_id' => ['required'],     
+        'cursos_id' => ['required'],    
+        'contratado'=>['nullable','boolean'], 
         ];
     }
     public function messages() {
         return[
             'nome.required' => "o campo precisa ser informado",
             'nome.max' => "o campo deve ter no máximo 100 caracteres",
-            'descricao.max' => "O campo deve ter no máximo 300 caeracteres",
+            'descricao.max' => "O campo deve ter no máximo 150 caracteres",
             'imagem.image' => "A imagem precisa ser dos tipos PNG, JPEG, JPG, ...",
+            
         ];
     }
+
+    
 }

@@ -18,6 +18,7 @@
 <div class="row">
     <label class="col-sm-2 col-form-label">{{ __('Descricao do Aluno') }}</label>
     <div>
+        <small>ATENÇÃO: O LIMITE  É DE 150 CARACTERES</small>
         <textarea id="descricao" name="descricao" class="form-control @error('descricao') is-invalid @enderror"
             placeholder="Escreva uma descrição curta sobre o aluno"
             required>{{ isset($aluno) ? $aluno->descricao : old('descricao') }}</textarea>
@@ -30,19 +31,37 @@
 </div>
 
 {{-- Está contratado? --}}
+<div class="row">
+    <label class="col-sm-2 col-form-label">{{ __('Está contratado?') }}</label>
+    <div class="input-contratado">
+        <input type="checkbox" id="contratado" name="contratado" value="1" class="form-control @error('contratado') is-invalid @enderror" @if(isset($aluno) && $aluno->contratado) checked @endif>
+        @error('contratado')
+        <span class="invalid-feedback" role="alert">
+            <i class="fi-circle-cross"></i><strong> {{ $message }}</strong>
+        </span>
+        @enderror
+    </div>
+</div>
+
+<!-- {{-- Está contratado? --}}
 
 <div class="row">
     <label class="col-sm-2 col-form-label">{{ __('Está contratado?') }}</label>
-    <div>
-        <input type="checkbox" id="estáFormado" name="contratado" value="1" data-expected-info="contratado"
-            class="form-control @error('contratado') is-invalid @enderror" required>
+    <div class="input-contratado">
+        <input style="transform: scale(1);" type="radio" id="contratado" name="contratado" value="1" data-expected-info="contratado"
+            class="form-control @error('contratado') is-invalid @enderror">
+            <label for="contratado"></label>
+        <!-- <input style="transform: scale(1);" type="radio" id="contrado-nao" name="contratado" value="0" data-expected-info="contratado"
+            class="form-control @error('contratado') is-invalid @enderror">    
+            <label for="contrado-nao">NÃO</label> -->
         @error('contratado')
             <span class="invalid-feedback" role="alert">
                 <i class="fi-circle-cross"></i><strong> {{ $message }}</strong>
             </span>
         @enderror
     </div>
-</div>
+</div> -->
+
 
 {{-- Curso --}}
 <div class="row">

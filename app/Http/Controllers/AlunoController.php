@@ -39,11 +39,12 @@ class AlunoController extends Controller
     public function store(AlunoRequest $request)
     {
         $data = $request->all();
-        if($request->hasfile('imagem')){
+        $data['contratado'] = $request->has('contratado') ? true : false;
+        if ($request->hasfile('imagem')) {
             $data['imagem'] = '/storage/' . $request->file('imagem')->store('aluno', 'public');
         }
         $this->alunos->create($data);
-        return redirect()->route('aluno.index')->with('success','Aluno cadastrado com sucesso');
+        return redirect()->route('aluno.index')->with('success', 'Aluno cadastrado com sucesso');
     }
 
 
@@ -66,16 +67,17 @@ class AlunoController extends Controller
 
     public function update(AlunoRequest $request, $id)
     {
+
         $data = $request->all();
         $aluno = $this->alunos->find($id);
-
-        if($request->hasFile('imagem')){
+        $data['contratado'] = $request->has('contratado') ? true : false;
+        if ($request->hasFile('imagem')) {
             Storage::disk('public')->delete(substr($aluno->imagem, 9));
             $data['imagem'] = '/storage/' . $request->file('imagem')->store('aluno', 'public');
+        }
+        $aluno->update($data);
+        return redirect()->route('aluno.index')->with('success', 'Aluno atualizado com sucesso.');
     }
-    $aluno->update($data);
-    return redirect()->route('aluno.index')->with('success','Aluno atualizado com sucesso.');
-}
 
     public function destroy($id)
     {
@@ -83,6 +85,11 @@ class AlunoController extends Controller
         Storage::delete('public/' . $aluno->imagem);
         $aluno->delete();
 
-        return redirect()->route('aluno.index')->with('success','Aluno deletado com sucesso!');
+        return redirect()->route('aluno.index')->with('success', 'Aluno deletado com sucesso!');
+    }
+    public function contratar(Aluno $aluno)
+    {
+        $aluno->update(['contratado' => true]);
+        return redirect()->back()->with('status', 'Aluno contratado com sucesso!');
     }
 }
