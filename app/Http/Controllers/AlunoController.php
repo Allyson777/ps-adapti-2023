@@ -39,11 +39,23 @@ class AlunoController extends Controller
     public function store(AlunoRequest $request)
     {
         $data = $request->all();
+
+        // Define o valor de 'contratado'
         $data['contratado'] = $request->has('contratado') ? true : false;
-        if ($request->hasfile('imagem')) {
-            $data['imagem'] = '/storage/' . $request->file('imagem')->store('aluno', 'public');
+
+        // Verifica se o arquivo foi enviado e o armazena corretamente
+        if ($request->hasFile('imagem')) {
+            // Armazena a imagem na pasta 'aluno' do disco 'public'
+            $path = $request->file('imagem')->store('aluno', 'public');
+
+            // Salva o caminho público da imagem
+            $data['imagem'] = '/storage/' . $path;
         }
+
+        // Cria o registro no banco de dados
         $this->alunos->create($data);
+
+        // Redireciona com mensagem de sucesso
         return redirect()->route('aluno.index')->with('success', 'Aluno cadastrado com sucesso');
     }
 
